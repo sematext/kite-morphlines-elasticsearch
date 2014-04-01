@@ -90,9 +90,6 @@ public class RestDocumentLoaderTest {
     verify(httpClient).execute(isA(HttpUriRequest.class));
     verify(httpClient).execute(argument.capture());
 
-    System.out.println(EntityUtils.toString(argument.getValue().getEntity()));
-    System.out.println("{\"index\":{\"_type\":\"bar_type\",\"_index\":\"foo_index\"}}\n" + MESSAGE_CONTENT + "\n");
-
     assertEquals("http://host1/_bulk", argument.getValue().getURI().toString());
     assertEquals("{\"index\":{\"_type\":\"bar_type\",\"_index\":\"foo_index\"}}\n" + MESSAGE_CONTENT + "\n",
             EntityUtils.toString(argument.getValue().getEntity()));
