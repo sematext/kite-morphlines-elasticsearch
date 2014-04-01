@@ -24,6 +24,18 @@ limitations under the License. -->
   <artifactId>kite-morphlines-elasticsearch</artifactId>
   <name>Kite Morphlines Elasticsearch</name>
 
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <url>http://svn.apache.org/viewcvs.cgi/maven</url>
+  </scm>
+
   <dependencies>
     <dependency>
       <groupId>org.kitesdk</groupId>
