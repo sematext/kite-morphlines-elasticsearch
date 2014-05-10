@@ -44,7 +44,7 @@ public class LoadElasticsearchBuilder implements CommandBuilder {
   public static final String DOCUMENT_LOADER_TYPE = "documentLoader";
   public static final String ELASTICSEARCH_CONFIGURATION = "elasticsearchConfig";
   public static final String TTL = "ttl";
-  public static final String COLLECTION = "collection";
+  public static final String INDEX_NAME = "indexName";
   public static final String TYPE = "type";
 
   @Override
@@ -72,7 +72,7 @@ public class LoadElasticsearchBuilder implements CommandBuilder {
       elapsedTime = getTimer(Metrics.ELAPSED_TIME);
       Config elasticsearchConfig = getConfigs().getConfig(config, ELASTICSEARCH_CONFIGURATION);
       String loaderType = getConfigs().getString(config, DOCUMENT_LOADER_TYPE);
-      indexName = getConfigs().getString(config, COLLECTION);
+      indexName = getConfigs().getString(config, INDEX_NAME);
       indexType = getConfigs().getString(config, TYPE);
       ttl = getConfigs().getInt(config, TTL);
       validateArguments();
