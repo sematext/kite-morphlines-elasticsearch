@@ -44,7 +44,7 @@ public class LoadElasticsearchBuilder implements CommandBuilder {
   public static final String DOCUMENT_LOADER_TYPE = "documentLoader";
   public static final String ELASTICSEARCH_CONFIGURATION = "elasticsearchConfig";
   public static final String TTL = "ttl";
-  public static final String INDEX_NAME = "indexName";
+  public static final String INDEX_NAME = "index";
   public static final String TYPE = "type";
 
   @Override
