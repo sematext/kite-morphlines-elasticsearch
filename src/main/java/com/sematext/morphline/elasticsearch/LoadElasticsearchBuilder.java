@@ -21,11 +21,13 @@ import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 import com.codahale.metrics.Timer;
 import com.google.common.annotations.VisibleForTesting;
 import com.typesafe.config.Config;
+
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
+
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.kitesdk.morphline.api.Command;
 import org.kitesdk.morphline.api.CommandBuilder;
@@ -131,9 +133,16 @@ public class LoadElasticsearchBuilder implements CommandBuilder {
         Map<String, Collection<Object>> map = record.getFields().asMap();
         for (Map.Entry<String, Collection<Object>> entry : map.entrySet()) {
           String key = entry.getKey();
-          Iterator<Object> iterator = entry.getValue().iterator();
-          while (iterator.hasNext()) {
-              documentBuilder.field(key, iterator.next());
+          Collection<Object> values = entry.getValue();
+          Iterator<Object> iterator = values.iterator();
+          if (values.size() > 1) {
+            documentBuilder.startArray(key);
+            while (iterator.hasNext()) {
+              documentBuilder.value(iterator.next());
+            }
+            documentBuilder.endArray();
+          } else if (iterator.hasNext()) {
+            documentBuilder.field(key, iterator.next());
           }
         }
         documentBuilder.endObject();
