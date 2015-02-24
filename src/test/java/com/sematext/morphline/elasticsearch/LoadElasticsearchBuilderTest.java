@@ -19,14 +19,18 @@ package com.sematext.morphline.elasticsearch;
 import com.codahale.metrics.MetricRegistry;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigObject;
+
 import java.util.Arrays;
 import java.util.HashSet;
+
 import static org.junit.Assert.assertNotNull;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.kitesdk.morphline.api.Command;
 import org.kitesdk.morphline.api.MorphlineContext;
 import org.mockito.Mock;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -60,6 +64,8 @@ public class LoadElasticsearchBuilderTest {
     when(config.getConfig(LoadElasticsearchBuilder.ELASTICSEARCH_CONFIGURATION)).thenReturn(esConfig);
     when(config.getString(LoadElasticsearchBuilder.DOCUMENT_LOADER_TYPE))
             .thenReturn(DocumentLoaderFactory.TRANSPORT_DOCUMENT_LOADER);
+    when(config.getString(LoadElasticsearchBuilder.INDEX_NAME)).thenReturn("foo");
+    when(config.getString(LoadElasticsearchBuilder.TYPE)).thenReturn("bar");
     ConfigObject obj = mock(ConfigObject.class);
     when(obj.keySet()).thenReturn(new HashSet<String>());
     when(config.root()).thenReturn(obj);
